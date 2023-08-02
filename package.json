@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-backend",
+  "version": "1.0.0",
+  "description": "portfolio backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faizanbardai/portfolio-backend.git"
+  },
+  "keywords": [
+    "portfolio"
+  ],
+  "author": "Faizan Bardai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faizanbardai/portfolio-backend/issues"
+  },
+  "homepage": "https://github.com/faizanbardai/portfolio-backend#readme"
+}
