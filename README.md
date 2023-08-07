@@ -14,4 +14,5 @@ npm run dev
 
 ```
 PORT=8000
+SHORT_URL_URI
 ```
