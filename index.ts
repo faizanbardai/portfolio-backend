@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import shortURLRouter from "./projects/shortURL/routes";
 
@@ -16,9 +17,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = process.env.PORT;
 
-app.get("/", (req: Request, res: Response) => res.send("FayJu Portfolio"));
+app.get("/", cors(), (req: Request, res: Response) => {
+  res.send("FayJu Portfolio");
+});
 
-app.use("/su/api", shortURLRouter);
+// Short URL
+const corsSU = cors({
+  origin: process.env.SHORT_URL_FRONTEND,
+});
+app.use("/su/api", corsSU, shortURLRouter);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
