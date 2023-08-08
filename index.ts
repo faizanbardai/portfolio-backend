@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import shortURLRouter from "./projects/shortURL/routes";
+import { corsSU } from "./projects/shortURL/corsSU";
 
 dotenv.config();
 
@@ -21,10 +22,6 @@ app.get("/", cors(), (req: Request, res: Response) => {
   res.send("FayJu Portfolio");
 });
 
-// Short URL
-const corsSU = cors({
-  origin: process.env.SHORT_URL_FRONTEND,
-});
 app.use("/su/api", corsSU, shortURLRouter);
 
 app.listen(port, () => {
