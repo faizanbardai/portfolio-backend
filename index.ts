@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import cors from "cors";
+import morgan from "morgan";
 
 import shortURLRouter from "./projects/shortURL/routes";
 import { corsSU } from "./projects/shortURL/corsSU";
@@ -12,6 +13,9 @@ const app: Express = express();
 
 // parse application/json
 app.use(bodyParser.json());
+
+// morgan
+app.use(morgan("dev"));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
