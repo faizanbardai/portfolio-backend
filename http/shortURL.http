@@ -2,7 +2,7 @@
 http://localhost:8001/
 
 ###
-POST http://localhost:8001/su/api
+POST http://localhost:8001/su
 content-type: application/json
 
 {
@@ -10,6 +10,6 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:8001/su/api/Sub-MC6
+GET http://localhost:8001/su/Sub-MC6
 
 ###
