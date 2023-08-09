@@ -1,3 +1,5 @@
 {
-  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"]
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/f49ae399-4792-4754-bd55-1e4d79856ef9/resourceGroups/fayju/providers/Microsoft.Web/sites/fayju",
+  "appService.deploySubpath": "."
 }
