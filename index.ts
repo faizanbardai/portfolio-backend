@@ -22,7 +22,7 @@ app.get("/", cors(), (req: Request, res: Response) => {
   res.send("FayJu Portfolio");
 });
 
-app.use("/su/api", corsSU, shortURLRouter);
+app.use("/su", corsSU, shortURLRouter);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
