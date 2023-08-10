@@ -13,9 +13,9 @@ const create = async (req: Request, res: Response) => {
 
   const url = new URL(originalURL);
 
-  const dnsLookupResponse = await dnsLookup(url.hostname);
-
-  if (!dnsLookupResponse) {
+  try {
+    await dnsLookup(url.hostname);
+  } catch (error) {
     return res.status(400).json({ message: "Invalid URL" });
   }
 
