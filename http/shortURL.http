@@ -30,4 +30,10 @@ content-type: application/json
   "alias": "my-google-2"
 }
 
-###
+### create url via alias
+POST http://localhost:8001/su
+content-type: application/json
+
+{
+  "url": "http://localhost:8001/su/Km4-Bn3"
+}

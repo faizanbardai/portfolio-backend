@@ -3,6 +3,7 @@ import URLModel from "../../db/models/url";
 import isValidUrl from "../../util/isValidUrl";
 import dnsLookup from "../../util/dnsLookup";
 import generateAlias from "../../util/generateAlias";
+import { isLongURLShortURL } from "../../util/isLongURLShortURL";
 
 const create = async (req: Request, res: Response) => {
   const { url: originalURL } = req.body;
@@ -17,6 +18,14 @@ const create = async (req: Request, res: Response) => {
     await dnsLookup(url.hostname);
   } catch (error) {
     return res.status(400).json({ message: "Invalid URL" });
+  }
+
+  const longURLisShortURL = await isLongURLShortURL(url.href);
+
+  if (longURLisShortURL) {
+    return res
+      .status(400)
+      .json({ message: "You have entered an existing short URL." });
   }
 
   const documents = await URLModel.find({ originalURL: url.href });
