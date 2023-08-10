@@ -10,6 +10,15 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:8001/su/Sub-MC6
+GET http://localhost:8001/su/Km4-Bn3
+
+###
+POST http://localhost:8001/su
+content-type: application/json
+
+{
+  "url": "https://www.google.com",
+  "alias": "my-google-2"
+}
 
 ###

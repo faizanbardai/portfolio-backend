@@ -6,7 +6,7 @@ const get = async (req: Request, res: Response) => {
   const document = await URLModel.findOne({ shortURL });
 
   if (!document) {
-    return res.status(404).send("Not Found");
+    return res.status(404).json({ message: "Not Found" });
   }
 
   res.redirect(document.originalURL);
