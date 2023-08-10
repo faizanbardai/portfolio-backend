@@ -1,7 +1,16 @@
-###
+### check server
+
 http://localhost:8001/
 
-###
+### create wrong url
+POST http://localhost:8001/su
+content-type: application/json
+
+{
+  "url": "https://www.ababcabaababababab.com"
+}
+
+### create url
 POST http://localhost:8001/su
 content-type: application/json
 
@@ -9,10 +18,10 @@ content-type: application/json
   "url": "https://www.google.com"
 }
 
-###
+### fetch url
 GET http://localhost:8001/su/Km4-Bn3
 
-###
+### create url with alias
 POST http://localhost:8001/su
 content-type: application/json
 
