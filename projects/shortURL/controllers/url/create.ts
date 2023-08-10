@@ -12,10 +12,35 @@ const create = async (req: Request, res: Response) => {
     return res.status(400).json({ message: "Invalid URL" });
   }
 
-  const url = new URL(originalURL);
+  const urlData = {
+    host: "",
+    port: "",
+    pathname: "",
+    search: "",
+    hash: "",
+    ip: "",
+    protocol: "",
+    params: "",
+  };
 
+  let url: URL;
   try {
-    await dnsLookup(url.hostname);
+    url = new URL(originalURL);
+    urlData.host = url.host;
+    urlData.port = url.port;
+    urlData.pathname = url.pathname;
+    urlData.search = url.search;
+    urlData.hash = url.hash;
+    urlData.protocol = url.protocol;
+    urlData.params = url.search;
+  } catch (error) {
+    return res.status(400).json({ message: "Invalid URL" });
+  }
+
+  let address, family;
+  try {
+    ({ address, family } = await dnsLookup(url.hostname));
+    urlData.ip = address;
   } catch (error) {
     return res.status(400).json({ message: "Invalid URL" });
   }
@@ -33,7 +58,7 @@ const create = async (req: Request, res: Response) => {
   if (documents.length) {
     const { alias } = req.body;
     if (!alias) {
-      return res.json(documents);
+      return res.json({ url: urlData, documents });
     } else {
       const aliasExists = await URLModel.exists({ shortURL: alias });
       if (aliasExists) {
@@ -44,7 +69,7 @@ const create = async (req: Request, res: Response) => {
         originalURL: url.href,
       });
       documents.push(newDocument);
-      return res.json(documents);
+      return res.json({ url: urlData, documents });
     }
   }
 
@@ -61,7 +86,7 @@ const create = async (req: Request, res: Response) => {
     shortURL: alias,
   });
   await urlObject.save();
-  res.json([urlObject]);
+  res.json({ url: urlData, documents: [urlObject] });
 };
 
 export default create;
