@@ -16,11 +16,11 @@ const create = async (req: Request, res: Response) => {
     host: "",
     port: "",
     pathname: "",
-    search: "",
     hash: "",
     ip: "",
     protocol: "",
     params: "",
+    href: "",
   };
 
   let url: URL;
@@ -29,10 +29,10 @@ const create = async (req: Request, res: Response) => {
     urlData.host = url.host;
     urlData.port = url.port;
     urlData.pathname = url.pathname;
-    urlData.search = url.search;
     urlData.hash = url.hash;
     urlData.protocol = url.protocol;
     urlData.params = url.search;
+    urlData.href = url.href;
   } catch (error) {
     return res.status(400).json({ message: "Invalid URL" });
   }
